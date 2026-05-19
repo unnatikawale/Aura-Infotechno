@@ -434,7 +434,7 @@
                     <!-- Blue background shape -->
                     <div class="relative w-full max-w-[360px] h-[450px] bg-[#82b1ff] rounded-t-[40px] rounded-b-[16px] overflow-hidden">
                         <!-- Placeholder for founder image -->
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&fit=crop" alt="Founder" class="w-full h-full object-cover object-top opacity-90 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&fit=crop" alt="Founder" class="w-full h-full object-cover object-top opacity-100 transition-all duration-500">
                     </div>
                 </div>
 
