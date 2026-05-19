@@ -14,6 +14,10 @@ Route::get('/blogs', function () {
     return view('blogs');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 Route::get('/blog/{slug}', function ($slug) {
     $blogs = [
         'ui-design-principles' => [

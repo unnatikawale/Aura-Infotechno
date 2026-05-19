@@ -73,7 +73,7 @@
             <a href="/" class="text-gray-100 hover:text-white transition-colors">Home</a>
             <a href="/services" class="text-[#00e5ff] font-medium transition-colors">Services</a>
             <a href="/blogs" class="text-gray-100 hover:text-white transition-colors">Blogs</a>
-            <a href="/#about" class="text-gray-100 hover:text-white transition-colors">About Us</a>
+            <a href="/about" class="text-gray-100 hover:text-white transition-colors">About Us</a>
             <a href="#contact" class="text-gray-100 hover:text-white transition-colors">Contact Us</a>
         </div>
 
@@ -91,7 +91,7 @@
             <a href="/" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Home</a>
             <a href="/services" class="mobile-nav-link text-[#00e5ff] transition-colors">Services</a>
             <a href="/blogs" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Blogs</a>
-            <a href="/#about" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">About Us</a>
+            <a href="/about" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">About Us</a>
             <a href="#contact" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Contact Us</a>
         </div>
     </nav>
