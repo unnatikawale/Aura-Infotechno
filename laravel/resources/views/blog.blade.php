@@ -66,7 +66,7 @@
             <a href="/services" class="text-gray-100 hover:text-white transition-colors">Services</a>
             <a href="/blogs" class="text-[#00e5ff] font-medium transition-colors">Blogs</a>
             <a href="/about" class="text-gray-100 hover:text-white transition-colors">About Us</a>
-            <a href="/services#contact" class="text-gray-100 hover:text-white transition-colors">Contact Us</a>
+            <a href="/contact-us" class="text-gray-100 hover:text-white transition-colors">Contact Us</a>
         </div>
 
         <!-- Hamburger Icon (Three lines) -->
@@ -82,7 +82,7 @@
             <a href="/services" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Services</a>
             <a href="/blogs" class="mobile-nav-link text-[#00e5ff] transition-colors">Blogs</a>
             <a href="/about" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">About Us</a>
-            <a href="/services#contact" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Contact Us</a>
+            <a href="/contact-us" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Contact Us</a>
         </div>
     </nav>
 

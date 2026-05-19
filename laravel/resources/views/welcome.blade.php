@@ -66,7 +66,7 @@
             <a href="/services" class="text-gray-100 hover:text-white transition-colors">Services</a>
             <a href="/blogs" class="text-gray-100 hover:text-white transition-colors">Blogs</a>
             <a href="/about" class="text-gray-100 hover:text-white transition-colors">About Us</a>
-            <a href="#contact" class="text-gray-100 hover:text-white transition-colors">Contact Us</a>
+            <a href="/contact-us" class="text-gray-100 hover:text-white transition-colors">Contact Us</a>
         </div>
 
         <!-- Hamburger Icon (Three lines) -->
@@ -82,7 +82,7 @@
             <a href="/services" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Services</a>
             <a href="/blogs" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Blogs</a>
             <a href="/about" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">About Us</a>
-            <a href="#contact" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Contact Us</a>
+            <a href="/contact-us" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Contact Us</a>
         </div>
     </nav>
 
@@ -696,7 +696,7 @@
             <p class="text-blue-950 font-medium text-[15px] md:text-[16px] max-w-2xl mb-8 leading-relaxed">
                 Take your business to the next level with cutting-edge web development and digital solutions.
             </p>
-            <a href="#contact" class="bg-black text-white font-semibold px-8 py-4 rounded-xl hover:bg-black/90 active:scale-[0.98] transition-all duration-300 shadow-xl text-[14px]">
+            <a href="/contact-us" class="bg-black text-white font-semibold px-8 py-4 rounded-xl hover:bg-black/90 active:scale-[0.98] transition-all duration-300 shadow-xl text-[14px]">
                 Partner with Us Today
             </a>
         </div>
