@@ -644,7 +644,7 @@
 
             <!-- Right Side Form -->
             <div class="lg:col-span-7">
-                <form action="#" method="POST" class="bg-[#0c0c0c]/40 border border-white/[0.04] p-8 md:p-12 rounded-[24px] shadow-[0_30px_60px_rgba(0,0,0,0.6)] space-y-6">
+                <form id="contact-form" action="{{ route('contact.submit') }}" method="POST" class="bg-[#0c0c0c]/40 border border-white/[0.04] p-8 md:p-12 rounded-[24px] shadow-[0_30px_60px_rgba(0,0,0,0.6)] space-y-6">
                     @csrf
                     <!-- Name -->
                     <div>
@@ -810,6 +810,157 @@
         }
 
         setInterval(rotateText, 3000);
+
+        // AJAX Contact Form Handler
+        function initContactForm() {
+            const contactForm = document.getElementById('contact-form');
+            if (!contactForm) return;
+
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.textContent;
+
+                // Show spinner / loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-black inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="animation: spin 1s linear infinite; width: 1.25rem; height: 1.25rem;">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" style="opacity: 0.25;"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" style="opacity: 0.75;"></path>
+                    </svg>
+                    Sending...
+                `;
+
+                const formData = new FormData(contactForm);
+
+                try {
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/json'
+                        },
+                        body: formData
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        showToast(data.message, 'success');
+                        
+                        // Hide the form fields
+                        const formFields = contactForm.querySelectorAll(':scope > :not(input[name="_token"])');
+                        formFields.forEach(el => el.style.display = 'none');
+
+                        // Insert a beautiful confirmation message
+                        const confirmationEl = document.createElement('div');
+                        confirmationEl.id = 'form-success-message';
+                        confirmationEl.className = 'flex flex-col items-center justify-center text-center py-10 space-y-6 transition-all duration-500 opacity-0 transform translate-y-4';
+                        confirmationEl.innerHTML = `
+                            <!-- Animated Checkmark Icon -->
+                            <div class="w-20 h-20 bg-[#00f2fe]/10 border border-[#00f2fe]/30 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(0,242,254,0.2)]" style="animation: bounce 2s infinite;">
+                                <svg class="text-[#00e5ff]" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <h3 class="text-white text-[22px] font-bold tracking-tight">Inquiry Sent Successfully!</h3>
+                                <p class="text-[#9ca3af] text-[14px] max-w-sm leading-relaxed mx-auto">
+                                    Thank you for reaching out to Aura Infotech. Your message has been safely delivered, and our technology experts will get back to you within 24 hours.
+                                </p>
+                            </div>
+
+                            <button type="button" id="reset-form-btn" class="px-6 py-2.5 bg-white/[0.08] hover:bg-white/[0.15] text-white text-[13px] font-semibold rounded-xl border border-white/[0.08] transition-all duration-300 active:scale-[0.98]">
+                                Send Another Message
+                            </button>
+                        `;
+
+                        contactForm.appendChild(confirmationEl);
+
+                        // Fade in
+                        setTimeout(() => {
+                            confirmationEl.classList.remove('opacity-0', 'translate-y-4');
+                            confirmationEl.classList.add('opacity-100', 'translate-y-0');
+                        }, 50);
+
+                        // Reset handler
+                        const resetBtn = confirmationEl.querySelector('#reset-form-btn');
+                        resetBtn.addEventListener('click', () => {
+                            confirmationEl.remove();
+                            contactForm.reset();
+                            formFields.forEach(el => el.style.display = '');
+                        });
+                    } else {
+                        showToast(data.message || 'An error occurred. Please check your fields.', 'error');
+                    }
+                } catch (error) {
+                    showToast('Something went wrong. Please try again later.', 'error');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }
+            });
+
+            function showToast(message, type) {
+                // Remove existing toasts first to prevent stacking clutter
+                const existing = document.querySelectorAll('.custom-toast');
+                existing.forEach(t => t.remove());
+
+                const toast = document.createElement('div');
+                toast.className = `custom-toast fixed bottom-6 right-6 z-[9999] flex items-center gap-3 px-6 py-4 rounded-2xl border backdrop-blur-xl transition-all duration-500 transform translate-y-10 opacity-0 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${
+                    type === 'success' 
+                        ? 'bg-[#00f2fe]/10 border-[#00f2fe]/30 text-white' 
+                        : 'bg-red-500/10 border-red-500/30 text-white'
+                }`;
+                
+                const icon = type === 'success' 
+                    ? `<svg class="text-[#00e5ff]" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`
+                    : `<svg class="text-red-500" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+
+                toast.innerHTML = `
+                    ${icon}
+                    <span class="text-[14px] font-medium tracking-wide">${message}</span>
+                `;
+
+                document.body.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-10', 'opacity-0');
+                    toast.classList.add('translate-y-0', 'opacity-100');
+                }, 100);
+
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                    toast.classList.add('translate-y-10', 'opacity-0');
+                    setTimeout(() => toast.remove(), 500);
+                }, 4000);
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initContactForm);
+        } else {
+            initContactForm();
+        }
+        
+        // Add CSS keyframe style for rotating spinner dynamically
+        if (!document.getElementById('spin-keyframe-style')) {
+            const style = document.createElement('style');
+            style.id = 'spin-keyframe-style';
+            style.textContent = `
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                @keyframes bounce {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-12px); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
     </script>
 </body>
 </html>
