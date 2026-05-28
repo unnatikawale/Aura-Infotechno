@@ -242,3 +242,17 @@ Route::get('/blog/{slug}', function ($slug) {
         'relatedBlogs' => $relatedBlogs
     ]);
 });
+
+use App\Http\Controllers\CheckoutController;
+
+// Checkout routes
+Route::get('/checkout/select-gateway', [CheckoutController::class, 'showPaymentMethods'])->name('checkout.select-gateway');
+Route::post('/checkout/process', [CheckoutController::class, 'processPayment'])->name('checkout.process');
+
+// Razorpay routes
+Route::get('/checkout/razorpay-payment/{order_id}/{razorpay_order_id}', [CheckoutController::class, 'showRazorpayPayment'])->name('checkout.razorpay-payment');
+Route::post('/payment/razorpay-callback', [CheckoutController::class, 'razorpayCallback'])->name('payment.razorpay-callback');
+
+// Success/Failed
+Route::get('/payment/success', [CheckoutController::class, 'paymentSuccess'])->name('checkout.success');
+Route::get('/payment/failed', [CheckoutController::class, 'paymentFailed'])->name('checkout.failed');

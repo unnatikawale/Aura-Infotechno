@@ -43,7 +43,9 @@
             <span id="cart-total" class="font-bold text-xl">₹0</span>
         </div>
         <div class="flex gap-4">
-            <a href="/checkout" class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-md transition-colors">Proceed</a>
+            <a href="#" onclick="proceedToCheckout(event)" class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-md transition-colors">
+    Proceed
+</a>
             <a href="/" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded">Continue Shopping</a>
         </div>
     </main>
@@ -105,9 +107,34 @@
             });
         }
         document.addEventListener('DOMContentLoaded', renderCart);
-        document.getElementById('proceed-btn')?.addEventListener('click', () => {
-            alert('Proceed to checkout (not implemented).');
-        });
+        
     </script>
+    <a href="#" onclick="proceedToCheckout(event)" class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-md transition-colors">
+    Proceed
+</a>
+
+<script>
+function proceedToCheckout(event) {
+    event.preventDefault();
+    
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const total = cart.reduce((sum, item) => {
+        const price = parseFloat(item.price.replace(/[^0-9\.]/g, ''));
+        return sum + (price * (item.quantity || 1));
+    }, 0);
+
+    if (cart.length === 0) {
+        alert('Cart is empty!');
+        return;
+    }
+
+    const params = new URLSearchParams({
+        items: JSON.stringify(cart),
+        total: total.toFixed(2)
+    });
+
+    window.location.href = `/checkout/select-gateway?${params.toString()}`;
+}
+</script>
 </body>
 </html>
