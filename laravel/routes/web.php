@@ -19,8 +19,12 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/contact-us', function () {
-    return view('contact');
+Route::get('/cart', function () {
+    return view('cart');
+});
+
+Route::get('/checkout', function () {
+    return view('checkout');
 });
 
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');

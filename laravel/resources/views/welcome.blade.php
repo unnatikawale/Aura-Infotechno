@@ -61,13 +61,16 @@
         </div>
         
         <!-- Desktop Navbar Links -->
-        <div class="hidden md:flex items-center gap-8 text-[15px]">
+        <div class="hidden md:flex items-center gap-8 text-[15px] ml-6">
             <a href="#" class="text-[#00e5ff] font-medium transition-colors">Home</a>
             <a href="/services" class="text-gray-100 hover:text-white transition-colors">Services</a>
             <a href="/blogs" class="text-gray-100 hover:text-white transition-colors">Blogs</a>
             <a href="/about" class="text-gray-100 hover:text-white transition-colors">About Us</a>
             <a href="/contact-us" class="text-gray-100 hover:text-white transition-colors">Contact Us</a>
         </div>
+        <div class="flex items-center ml-auto">
+<a href="/cart" id="cart-link" class="relative text-white focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12a1 1 0 00.9-1.5L17 13M7 13L5 6" /></svg><span id="cart-count" class="absolute -top-2 -right-2 bg-[#00e5ff] text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span></a>
+                </div>
 
         <!-- Hamburger Icon (Three lines) -->
         <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-between w-6 h-4 text-white focus:outline-none z-50">
@@ -204,6 +207,47 @@
             </div>
         </div>
     </section>
+
+<!-- Courses Section -->
+<section class="relative w-full max-w-[1400px] mx-auto px-10 py-16 z-10">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Our Courses</h2>
+        <p class="text-[#9ca3af] text-base md:text-lg mt-4 max-w-2xl mx-auto">
+            Explore our expertly crafted courses to upskill your team and accelerate growth.
+        </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Course Card -->
+        <div class="bg-[#080808]/50 backdrop-blur-sm border border-white/10 rounded-[16px] p-6 flex flex-col hover:-translate-y-2 hover:border-[#00e5ff]/50 transition-all duration-300">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop" alt="Course Image" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-xl font-semibold text-white mb-2">Full Stack Development</h3>
+            <p class="text-[#9ca3af] text-sm flex-1 mb-4">Master modern web technologies, from front‑end frameworks to back‑end APIs.</p>
+            <div class="flex items-center justify-between mt-auto">
+                <span class="text-[#00e5ff] font-bold text-lg">₹1199</span>
+                <button class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-md transition-colors add-to-cart-btn" data-title="Full Stack Development" data-price="₹1199" data-description="Master modern web technologies, from front‑end frameworks to back‑end APIs." data-image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop">Add to Cart</button>
+            </div>
+        </div>
+        <!-- Repeat for more courses -->
+        <div class="bg-[#080808]/50 backdrop-blur-sm border border-white/10 rounded-[16px] p-6 flex flex-col hover:-translate-y-2 hover:border-[#00e5ff]/50 transition-all duration-300">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop" alt="Course Image" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-xl font-semibold text-white mb-2">UI/UX Design Mastery</h3>
+            <p class="text-[#9ca3af] text-sm flex-1 mb-4">Learn design principles, prototyping, and user research for impactful interfaces.</p>
+            <div class="flex items-center justify-between mt-auto">
+                <span class="text-[#00e5ff] font-bold text-lg">₹1149</span>
+                <button class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-md transition-colors add-to-cart-btn" data-title="UI/UX Design Mastery" data-price="₹1149" data-description="Learn design principles, prototyping, and user research for impactful interfaces." data-image="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop">Add to Cart</button>
+            </div>
+        </div>
+        <div class="bg-[#080808]/50 backdrop-blur-sm border border-white/10 rounded-[16px] p-6 flex flex-col hover:-translate-y-2 hover:border-[#00e5ff]/50 transition-all duration-300">
+            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=600&h=400&fit=crop" alt="Course Image" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-xl font-semibold text-white mb-2">Digital Marketing Essentials</h3>
+            <p class="text-[#9ca3af] text-sm flex-1 mb-4">Boost traffic, conversions, and brand presence with data‑driven strategies.</p>
+            <div class="flex items-center justify-between mt-auto">
+                <span class="text-[#00e5ff] font-bold text-lg">₹1129</span>
+                <button class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-md transition-colors add-to-cart-btn" data-title="Digital Marketing Essentials" data-price="₹1129" data-description="Boost traffic, conversions, and brand presence with data‑driven strategies." data-image="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=600&h=400&fit=crop">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Our Services Section -->
     <section class="relative w-full max-w-[1400px] mx-auto px-10 py-16 z-10 mb-20">
@@ -785,6 +829,65 @@
         });
 
         // Rotating Text Effect
+
+// Cart functionality
+const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+function updateCartCount() {
+    const countEl = document.getElementById('cart-count');
+    if (countEl) countEl.textContent = cart.length;
+}
+function addToCart(event) {
+    const btn = event.currentTarget;
+    const title = btn.dataset.title || '';
+    const price = btn.dataset.price || '';
+    const description = btn.dataset.description || '';
+    const image = btn.dataset.image || '';
+    // Check if item already exists in cart by title
+    const existing = cart.find(item => item.title === title);
+    if (existing) {
+        existing.quantity = (existing.quantity || 1) + 1;
+    } else {
+        cart.push({ title, price, description, image, quantity: 1 });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    alert(`${title} added to cart`);
+}
+document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.addEventListener('click', () => {
+    addToCart(event);
+    window.location.href = '/cart';
+}));
+updateCartCount();
+
+        function renderCart() {
+            const stored = JSON.parse(localStorage.getItem('cart') || '[]');
+            cartItemsEl.innerHTML = '';
+            if (stored.length === 0) {
+                cartItemsEl.innerHTML = '<li class="text-gray-400">Cart is empty.</li>';
+            } else {
+                stored.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'flex justify-between';
+                    li.innerHTML = `<span>${item.title}</span><span>${item.price}</span>`;
+                    cartItemsEl.appendChild(li);
+                });
+            }
+        }
+
+        cartBtn?.addEventListener('click', () => {
+            renderCart();
+            cartModal.classList.remove('hidden');
+        });
+
+        closeCartBtn?.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+        });
+
+        proceedBtn?.addEventListener('click', () => {
+            alert('Proceed to checkout (not implemented).');
+        });
+
+        // Existing words array for rotating text
         const words = [
             "- SaaS Platforms",
             "- Web Development",
