@@ -50,20 +50,25 @@
             <a href="/contact-us" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Contact Us</a>
         </div>
 
-    <main class="flex-1 flex flex-col items-center max-w-[1400px] mx-auto w-full px-6 md:px-10 py-12">
-        <h2 class="text-3xl font-bold mb-6">Your Cart</h2>
-        <ul id="cart-items" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-lg mb-6"></ul>
-        <div class="w-full max-w-lg flex justify-between items-center mb-4 text-white">
-            <span class="font-semibold">Total:</span>
-            <span id="cart-total" class="font-bold text-xl">₹0</span>
-        </div>
-        <div class="flex gap-4">
-            <a href="#" onclick="proceedToCheckout(event)" class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-md transition-colors">
-    Proceed
-</a>
-            <a href="/" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded">Continue Shopping</a>
-        </div>
-    </main>
+    @auth
+<main class="flex-1 flex flex-col items-center max-w-[1400px] mx-auto w-full px-6 md:px-10 py-12">
+    <h2 class="text-3xl font-bold mb-6">Your Cart</h2>
+    <ul id="cart-items" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-lg mb-6"></ul>
+    <div class="w-full max-w-lg flex justify-between items-center mb-4 text-white">
+        <span class="font-semibold">Total:</span>
+        <span id="cart-total" class="font-bold text-xl">₹0</span>
+    </div>
+    <div class="flex gap-4">
+        <a href="#" onclick="proceedToCheckout(event)" class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-md transition-colors">Proceed</a>
+        <a href="/" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded">Continue Shopping</a>
+    </div>
+</main>
+@endauth
+@guest
+<div class="flex items-center justify-center min-h-screen">
+    <p class="text-white text-lg mb-4">Please <a href="{{ route('login') }}" class="text-[#00e5ff] underline">log in</a> to view your cart.</p>
+</div>
+@endguest
 
     <script>
         function renderCart() {

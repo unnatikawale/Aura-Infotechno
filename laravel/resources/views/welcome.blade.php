@@ -25,7 +25,7 @@
         }
         .bg-letter {
             position: absolute;
-            font-size: 35vw;
+            font-size: 15vw;
             font-weight: 300;
             color: transparent;
             -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
@@ -34,7 +34,7 @@
         }
     </style>
 </head>
-<body class="relative min-h-screen flex flex-col">
+<body class="relative min-h-screen flex flex-col" style="min-height:100vh;">
     <!-- Background Letters -->
     <div class="bg-letters font-bold">
         <div class="bg-letter" style="top: -10%; left: 60%; transform: rotate(-10deg);">U</div>
@@ -67,10 +67,33 @@
             <a href="/blogs" class="text-gray-100 hover:text-white transition-colors">Blogs</a>
             <a href="/about" class="text-gray-100 hover:text-white transition-colors">About Us</a>
             <a href="/contact-us" class="text-gray-100 hover:text-white transition-colors">Contact Us</a>
+            <a href="/login" class="text-gray-100 hover:text-white transition-colors">Login</a>
+            <a href="/register" class="text-gray-100 hover:text-white transition-colors">Register</a>
         </div>
-        <div class="flex items-center ml-auto">
+        <div class="flex items-center ml-auto mr-6">
 <a href="/cart" id="cart-link" class="relative text-white focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12a1 1 0 00.9-1.5L17 13M7 13L5 6" /></svg><span id="cart-count" class="absolute -top-2 -right-2 bg-[#00e5ff] text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span></a>
                 </div>
+            <!-- User Icon and Dropdown (visible when logged in) -->
+            @auth
+            <div class="relative" id="user-menu-container">
+                <button id="user-menu-btn" class="flex items-center space-x-2 text-gray-100 focus:outline-none" type="button" aria-haspopup="true" aria-expanded="false">
+                    <!-- Clearer user avatar icon -->
+                    <div class="h-8 w-8 flex items-center justify-center bg-gray-800 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A9 9 0 1118.879 6.196a9 9 0 01-13.758 11.608z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                </button>
+                <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-[#050505] rounded-md shadow-lg py-1 z-50">
+                    <a href="/purchases" class="block px-4 py-2 text-sm text-gray-100 hover:bg-[#00e5ff]">View Purchase</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-100 hover:bg-[#00e5ff]">Logout</button>
+                    </form>
+                </div>
+            </div>
+            @endauth
 
         <!-- Hamburger Icon (Three lines) -->
         <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-between w-6 h-4 text-white focus:outline-none z-50">
@@ -86,13 +109,18 @@
             <a href="/blogs" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Blogs</a>
             <a href="/about" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">About Us</a>
             <a href="/contact-us" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Contact Us</a>
+            <a href="/login" class="text-gray-100 hover:text-white transition-colors">Login</a>
+            <a href="/register" class="text-gray-100 hover:text-white transition-colors">Register</a>
+        
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-1 flex items-center max-w-[1400px] mx-auto w-full px-6 md:px-10 z-10 pb-20 relative mt-4 md:mt-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full">
-            <!-- Left Side -->
+    <main class="flex-1 flex flex-col md:flex-row items-start justify-between max-w-[1400px] mx-auto w-full px-6 md:px-10 z-10 pb-20 relative mt-4 md:mt-10 gap-8">
+                </div>
+            </div>
+
+             <!-- Left Side -->
             <div class="flex flex-col gap-6 max-w-xl text-left">
                 <h1 class="text-[36px] sm:text-[48px] md:text-[60px] leading-[1.1] font-medium tracking-tight">
                     We Build Powerful<br>
@@ -115,13 +143,13 @@
             </div>
 
             <!-- Right Side Image/Card -->
-            <div class="relative w-full aspect-[4/3] rounded-[16px] overflow-hidden bg-[#e9ecef] shadow-lg flex items-center justify-center p-8">
+            <div class="relative w-full max-w-[400px] aspect-[4/3] rounded-[16px] overflow-hidden bg-[#e9ecef] shadow-lg flex items-center justify-center p-8">
                 <!-- Background decoration matching the image -->
-                <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px]">
-                    <div class="absolute inset-0 rounded-full border-[70px] border-[#6528F7] opacity-90 mix-blend-multiply"></div>
-                    <div class="absolute inset-8 rounded-full border-[50px] border-[#A076F9] opacity-70 mix-blend-multiply"></div>
-                    <div class="absolute inset-16 rounded-full border-[30px] border-[#D7BBF5] opacity-50 mix-blend-multiply"></div>
-                    <div class="absolute inset-0 rounded-full border-[100px] border-white opacity-20 filter blur-2xl"></div>
+                <div class="absolute -bottom-32 -left-32 w-[300px] h-[300px]">
+                    <div class="absolute inset-0 rounded-full border-[35px] border-[#6528F7] opacity-90 mix-blend-multiply"></div>
+                    <div class="absolute inset-4 rounded-full border-[25px] border-[#A076F9] opacity-70 mix-blend-multiply"></div>
+                    <div class="absolute inset-8 rounded-full border-[15px] border-[#D7BBF5] opacity-50 mix-blend-multiply"></div>
+                    <div class="absolute inset-0 rounded-full border-[50px] border-white opacity-20 filter blur-2xl"></div>
                 </div>
                 
                 <!-- Inner white card -->
@@ -829,8 +857,30 @@
         });
 
         // Rotating Text Effect
+        // User Menu Toggle
+        const userMenuBtn = document.getElementById('user-menu-btn');
+        const userMenu = document.getElementById('user-menu');
+        if (userMenuBtn && userMenu) {
+            userMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isHidden = userMenu.classList.contains('hidden');
+                if (isHidden) {
+                    userMenu.classList.remove('hidden');
+                    userMenuBtn.setAttribute('aria-expanded', 'true');
+                } else {
+                    userMenu.classList.add('hidden');
+                    userMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+            document.addEventListener('click', (e) => {
+                if (!userMenu.contains(e.target) && !userMenuBtn.contains(e.target)) {
+                    userMenu.classList.add('hidden');
+                    userMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
 
-// Cart functionality
+        // Cart functionality
 const cart = JSON.parse(localStorage.getItem('cart') || '[]');
 function updateCartCount() {
     const countEl = document.getElementById('cart-count');

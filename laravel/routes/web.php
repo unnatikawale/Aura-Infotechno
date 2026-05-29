@@ -256,3 +256,14 @@ Route::post('/payment/razorpay-callback', [CheckoutController::class, 'razorpayC
 // Success/Failed
 Route::get('/payment/success', [CheckoutController::class, 'paymentSuccess'])->name('checkout.success');
 Route::get('/payment/failed', [CheckoutController::class, 'paymentFailed'])->name('checkout.failed');
+
+// Purchase routes
+Route::get('/purchases', [App\Http\Controllers\PurchaseController::class, 'index'])->name('purchases');
+Route::get('/purchases/{id}', [App\Http\Controllers\PurchaseController::class, 'show'])->name('purchases.show');
+
+// Authentication routes (static pages)
+Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLogin'])->name('login');
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegister'])->name('register');
+Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login.post');
+Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register.post');
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
