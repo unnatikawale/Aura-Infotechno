@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
+
 class CheckoutController extends Controller
 {
     // Show gateway selection
@@ -79,7 +80,8 @@ class CheckoutController extends Controller
             ]);
 
         } catch (\Exception $e) {
-            return redirect('/checkout/select-gateway')->with('error', $e->getMessage());
+            // Return with validation-like error to display in Blade
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 

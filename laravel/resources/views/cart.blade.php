@@ -12,6 +12,13 @@
 <body class="relative min-h-screen flex flex-col">
     <!-- Navbar (reuse same as welcome page) -->
     <nav class="flex items-center justify-between px-6 md:px-10 py-6 md:py-8 max-w-[1400px] w-full mx-auto z-50 relative">
+            <!-- Mobile Menu Button (Three lines) -->
+<button id="mobile-menu-btn" type="button" class="md:hidden flex flex-col justify-between w-6 h-4 text-white focus:outline-none z-50 cursor-pointer">
+    <span class="w-full h-[2px] bg-white rounded-full transition-transform duration-300 origin-left"></span>
+    <span class="w-full h-[2px] bg-white rounded-full transition-opacity duration-300"></span>
+    <span class="w-full h-[2px] bg-white rounded-full transition-transform duration-300 origin-left"></span>
+</button>
+            
         <div class="flex items-center gap-3">
             <svg width="46" height="22" viewBox="0 0 100 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C31.5435 4 38.0772 8.16335 41.5173 14.5029L58.4827 33.4971C61.9228 39.8367 68.4565 44 76 44C87.0457 44 96 35.0457 96 24C96 12.9543 87.0457 4 76 4C68.4565 4 61.9228 8.16335 58.4827 14.5029L41.5173 33.4971C38.0772 39.8367 31.5435 44 24 44Z" stroke="url(#paint0_linear)" stroke-width="8" stroke-linecap="round"/>
@@ -26,7 +33,7 @@
             </svg>
             <span class="text-[20px] md:text-[22px] font-bold tracking-tight">Aura Infotech</span>
         </div>
-        <div class="flex items-center gap-8 text-[15px] ml-6">
+        <div class="hidden md:flex items-center gap-8 text-[15px] ml-6">
             <a href="/" class="text-[#00e5ff] font-medium transition-colors">Home</a>
             <a href="/services" class="text-gray-100 hover:text-white transition-colors">Services</a>
             <a href="/blogs" class="text-gray-100 hover:text-white transition-colors">Blogs</a>
@@ -34,6 +41,14 @@
             <a href="/contact-us" class="text-gray-100 hover:text-white transition-colors">Contact Us</a>
         </div>
     </nav>
+        <!-- Mobile Menu Slide-over Panel -->
+        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-[50vh] bg-[#050505]/98 backdrop-blur-xl flex flex-col items-center justify-center gap-6 text-[18px] font-semibold text-white transition-transform duration-500 -translate-y-full md:hidden z-40 border-b border-white/[0.05] shadow-[0_10px_35px_rgba(0,0,0,0.9)]">
+            <a href="/" class="mobile-nav-link text-[#00e5ff] transition-colors">Home</a>
+            <a href="/services" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Services</a>
+            <a href="/blogs" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Blogs</a>
+            <a href="/about" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">About Us</a>
+            <a href="/contact-us" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Contact Us</a>
+        </div>
 
     <main class="flex-1 flex flex-col items-center max-w-[1400px] mx-auto w-full px-6 md:px-10 py-12">
         <h2 class="text-3xl font-bold mb-6">Your Cart</h2>
@@ -109,10 +124,46 @@
         document.addEventListener('DOMContentLoaded', renderCart);
         
     </script>
-    <a href="#" onclick="proceedToCheckout(event)" class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-md transition-colors">
-    Proceed
-</a>
+    <script>
+        // Mobile Menu Toggle (same as welcome page)
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        const lines = mobileMenuBtn.querySelectorAll('span');
 
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('-translate-y-full');
+            if (isOpen) {
+                // Open menu
+                mobileMenu.classList.remove('-translate-y-full');
+                mobileMenu.classList.add('translate-y-0');
+                // Animate hamburger to X
+                lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                lines[1].style.opacity = '0';
+                lines[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                // Close menu
+                mobileMenu.classList.remove('translate-y-0');
+                mobileMenu.classList.add('-translate-y-full');
+                // Reset hamburger lines
+                lines[0].style.transform = 'none';
+                lines[1].style.opacity = '1';
+                lines[2].style.transform = 'none';
+            }
+        });
+
+        // Close menu when clicking a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-y-0');
+                mobileMenu.classList.add('-translate-y-full');
+                lines[0].style.transform = 'none';
+                lines[1].style.opacity = '1';
+                lines[2].style.transform = 'none';
+            });
+        });
+    </script>
+   
 <script>
 function proceedToCheckout(event) {
     event.preventDefault();
