@@ -9,18 +9,17 @@ use Illuminate\Support\Facades\Auth;
 class PurchaseController extends Controller
 {
     // Display list of purchases for the logged-in user
-    public function index()
+    // Display list of purchased courses for the logged-in user
+    public function myCourses()
     {
-        // Ensure user is authenticated
         $user = Auth::user();
         if (!$user) {
-            // Redirect to login if not authenticated
             return redirect()->route('login');
         }
-        // Assuming orders table links to user via customer_email
         $orders = Order::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
-        return view('purchases', ['orders' => $orders]);
+        return view('courses', ['orders' => $orders]);
     }
+
 
     // Store a new purchase (optional placeholder)
     public function store(Request $request)

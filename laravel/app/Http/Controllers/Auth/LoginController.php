@@ -23,6 +23,15 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            // Update last login timestamp
+            $user->last_login_at = now();
+            $user->save();
+            // Ensure the account is active
+            if (!$user->is_active) {
+                Auth::logout();
+                return back()->withErrors(['email' => 'Your account is inactive.'])->withInput();
+            }
             $request->session()->regenerate();
             return redirect()->intended('/');
         }

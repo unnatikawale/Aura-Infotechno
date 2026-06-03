@@ -67,8 +67,8 @@
             <a href="/blogs" class="text-gray-100 hover:text-white transition-colors">Blogs</a>
             <a href="/about" class="text-gray-100 hover:text-white transition-colors">About Us</a>
             <a href="/contact-us" class="text-gray-100 hover:text-white transition-colors">Contact Us</a>
-            <a href="/login" class="text-gray-100 hover:text-white transition-colors">Login</a>
-            <a href="/register" class="text-gray-100 hover:text-white transition-colors">Register</a>
+            <a href="/login" class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-full transition-colors">Login</a>
+            <a href="/register" class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-full transition-colors">Register</a>
         </div>
         <div class="flex items-center ml-auto mr-6">
 <a href="/cart" id="cart-link" class="relative text-white focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12a1 1 0 00.9-1.5L17 13M7 13L5 6" /></svg><span id="cart-count" class="absolute -top-2 -right-2 bg-[#00e5ff] text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span></a>
@@ -85,7 +85,8 @@
                         </svg>
                     </div>
                 </button>
-                <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-[#050505] rounded-md shadow-lg py-1 z-50">
+                                    <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-[#050505] rounded-md shadow-lg py-1 z-50">
+                        <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-100 hover:bg-[#00e5ff]">Dashboard</a>
                     <a href="/purchases" class="block px-4 py-2 text-sm text-gray-100 hover:bg-[#00e5ff]">View Purchase</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -109,8 +110,8 @@
             <a href="/blogs" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Blogs</a>
             <a href="/about" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">About Us</a>
             <a href="/contact-us" class="mobile-nav-link text-gray-200 hover:text-white transition-colors">Contact Us</a>
-            <a href="/login" class="text-gray-100 hover:text-white transition-colors">Login</a>
-            <a href="/register" class="text-gray-100 hover:text-white transition-colors">Register</a>
+            <a href="/login" class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-full transition-colors">Login</a>
+            <a href="/register" class="bg-[#00e5ff] hover:bg-[#0099cc] text-white px-4 py-2 rounded-full transition-colors">Register</a>
         
         </div>
     </nav>
