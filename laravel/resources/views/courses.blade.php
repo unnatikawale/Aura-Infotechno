@@ -12,7 +12,7 @@
 </head>
 <body class="flex min-h-screen bg-[#050505] text-white">
     @include('partials.sidebar')
-    <main class="flex-1 p-6">
+    <main class="flex-1 p-6 md:ml-64">
         <h1 class="text-4xl font-bold mb-6 text-[#00e5ff]">Your Courses</h1>
         @if(isset($orders) && $orders->count())
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
